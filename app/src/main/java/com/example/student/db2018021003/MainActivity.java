@@ -1,10 +1,15 @@
 package com.example.student.db2018021003;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -43,5 +48,32 @@ public class MainActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.add:
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                final EditText ed = new EditText(MainActivity.this);
+                builder.setTitle("新增資料");
+                builder.setView(ed);
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mydata.add(ed.getText().toString());
+                    }
+                });
+
+                builder.show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
