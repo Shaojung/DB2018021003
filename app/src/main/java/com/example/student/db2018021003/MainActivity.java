@@ -1,6 +1,7 @@
 package com.example.student.db2018021003;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, mydata.get(position), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this, mydata.get(position), Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(MainActivity.this, DetailActivity.class);
+                it.putExtra("data", mydata.get(position));
+                startActivity(it);
             }
         });
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
